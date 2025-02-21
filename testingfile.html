@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Gallery</title>
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .video-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .video-item {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+        }
+
+        h5 {
+            margin: 15px;
+            font-size: 1.2em;
+            text-align: center;
+            color: #444;
+        }
+
+        @media (max-width: 600px) {
+            iframe {
+                height: 150px;
+            }
+
+            h5 {
+                font-size: 1em;
+            }
+        } 
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 10px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            border: none;
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 20px;
+            flex: 1;
+            outline: none;
+        }
+
+        button {
+            background: #007bff;
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            margin-left: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .h1 { 
+            text-align: center; 
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head> 
+ 
+<body>
+    <div class="hading"> 
+        <h1> Welcome To Design+Code Hub</h1>
+    </div>
+
+    <!-- Search Section -->
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search for a video..." oninput="searchFunction()">
+        <button onclick="searchFunction()">Search</button>
+    </div>
+
+    <!-- Video Section -->
+    <div class="video-container" id="videoContainer">
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/sPM2WiwA1us" title="GSoC 2025 Roadmap" allowfullscreen></iframe>
+            <h5>GSoC 2025 Roadmap</h5>
+        </div>
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/UmnCZ7-9yDY" title="Java Complete Course" allowfullscreen></iframe>
+            <h5>Java Complete Course</h5>
+        </div>
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/e7sAf4SbS_g" title="C++ Complete Course" allowfullscreen></iframe>
+            <h5>C++ Complete Course</h5>
+        </div>
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/k2DSi1zGEc8" title="HTML Complete Course" allowfullscreen></iframe>
+            <h5>HTML Complete Course</h5>
+        </div>
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/rklidcZ-aLU" title="HTML Course with Project" allowfullscreen></iframe>
+            <h5>HTML Course with Project</h5>
+        </div>
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/UrsmFxEIp5k" title="Python Complete Course with Project" allowfullscreen></iframe>
+            <h5>Python Complete Course with Project</h5>
+        </div>
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/VlPiVmYuoqw" title="JavaScript Complete Course with Project" allowfullscreen></iframe>
+            <h5>JavaScript Complete Course with Project</h5>
+        </div>
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/GwIo3gDZCVQ" title="Machine Learning Crash Course" allowfullscreen></iframe>
+            <h5>Machine Learning Crash Course</h5>
+        </div>
+        <div class="video-item">
+            <iframe src="https://www.youtube.com/embed/TlB_eWDSMt4" title="Node.js Crash Course" allowfullscreen></iframe>
+            <h5>Node.js Crash Course</h5>
+        </div>
+    </div>
+
+    <script>
+        function searchFunction() {
+            let query = document.getElementById("searchInput").value.toLowerCase();
+            let videos = document.querySelectorAll(".video-item");
+            let container = document.getElementById("videoContainer");
+            let hasResults = false;
+            
+            videos.forEach(video => {
+                let title = video.querySelector("h5").innerText.toLowerCase();
+                if (title.includes(query) || query === "") {
+                    video.style.display = "block";
+                    hasResults = true;
+                } else {
+                    video.style.display = "none";
+                }
+            });
+
+            container.classList.toggle("hidden", !hasResults);
+        }
+    </script>
+</body>
+</html>
